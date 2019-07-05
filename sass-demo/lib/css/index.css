@@ -1,0 +1,34 @@
+@charset "UTF-8";
+.link {
+  color: green;
+  margin-top: 100px;
+}
+
+.link:hover {
+  color: red;
+}
+
+.block {
+  border: 1px solid #000;
+  width: 200px;
+  height: 200px;
+}
+
+.ellipsis {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ellipsis-3 {
+  width: 200px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*autoprefixer 默认会 删除此属性*/
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  -webkit-line-clamp: 2;
+}

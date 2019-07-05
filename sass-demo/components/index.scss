@@ -1,0 +1,48 @@
+
+@import "vars";
+@import "v";
+@import "util";
+// body{
+//     div{
+//         color:$color-primary;
+//         a{
+//             color:green;
+//             &:hover { color: red }
+//         }
+//     }
+// }
+.link{
+    color:green;
+    margin-top:100px;
+    &:hover { color: red }
+}
+.block{
+    border:1px solid #000;
+    width:200px;
+    height:200px;
+    
+    // p:first-child{
+    //     color:pink;
+    // }
+    .f{
+
+    }
+    .s{
+
+    }
+    .t{
+
+    }
+}
+.ellipsis{
+    width:200px;
+    @include one-line-ellipsis;
+}
+
+
+.ellipsis-3{
+    width:200px;
+    @include line-clamp-ellipsis(2);
+}
+
+

@@ -1,0 +1,228 @@
+场景0:创建远端裸仓库
+
+	git init --bare sample.git
+
+   裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区
+
+
+场景1: 新开了一个项目project(project文件夹下,假设下面有一个readme.txt),用git来版本管理
+	
+	git窗口进入project 目录:
+	
+	git init   --生成.git文件
+	git add readme.txt  --放入暂存区
+	git commit -m "add a readme file" --提交  引号内为提交日志
+	
+	ok 
+
+	
+场景2: 从远程库克隆
+
+      git clone git@github.com:用户名/project.git  ---project为项目名  git@github.com为远程地址
+	  
+场景3: 把本地文件推到远程
+	   git push origin master
+
+场景4: 同时开发俩个分支dev1 dev2  ,开发完后提交到主干
+		
+	  1. git窗口进入project 目录:
+	  2. git checkout -b dev1  //创建分支dev1并且换到dev1  
+	      
+		  以上命令等价于 git branch dev  //创建dev1分支   git checkout dev  //切换到dev1
+		  
+	      git branch   //列出所有分支，当前分支前面会标一个*号。
+	  3. dev1 开发完成需要合并主干
+	  
+	  4. 切换回主干 
+	     git checkout master 
+		 
+	  5. 把dev1合并到主干 
+	  
+	     git merge dev1 //有冲突请先解决冲突  用git status查看那些文件冲突
+		 
+		 合并也可以用下面这个：
+		 git merge --no-ff -m "merge with no-ff" dev1  //禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息)
+		 
+		 
+	  4. 删除dev1分支 (dev1已经没用了的话)
+		 
+	     git branch -d dev1
+		 
+		 
+	  dev2和dev1情况相同
+	  
+场景5: 回退到某个版本
+
+	   git reset --hard HEAD^   //退回上一个版本
+	   
+	   git reset --hard  版本号  //回退到指定版本  (使用git log 查看版本信息 )
+	   
+场景6: 放弃暂存区的修改
+
+	   git reset HEAD readme.txt  //readme.txt为文件名
+	   
+场景6: 放弃工作区的修改时
+		
+       git checkout -- readme.txt //readme.txt为文件名
+	   
+	   这里有两种情况：
+	   
+		一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+		一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态
+		
+场景7: 比较工作区和版本库里面最新版本的区别
+
+	  git diff readme.txt   //readme.txt为文件名
+	  
+场景8: 分支上开发的代码没有合并，被boss通知废弃branch开发
+
+	  git branch -d 分支名  //删除时提示 代码未提交不能删除
+	  git branch -D 分支名  //强行删除分支
+	  
+场景9:  把project 项目放到github上
+
+		1.  注册github 
+		
+		2.  创建ssk
+		    ssh-keygen -t rsa -C "youremail@example.com"  //youremail@example.com 为github账号
+			
+			找到本地id_rsa.pub文件把内容粘贴到网站上一个ssk管理的页面输入框里
+			
+		3.  创建项目名字为project  //在GitHub上的这个project仓库还是空的
+		
+		4.  git remote add origin git@github.com:用户名/项目名.git  //用户名为github自己用户名
+		
+		5.  git push -u origin master //把本地库的所有内容推送到github上 推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样
+		
+		6.  从现在起，只要本地作了提交，就可以通过命令：
+		    git push origin master
+		
+场景10: 从github上下载项目
+       
+		git clone git@github.com:用户名/项目名.git  //用户名为github自己用户名
+		
+场景11: 在分支dev1上开发未完成，收到紧急需求要改主干上的一个bug
+      
+		1. git stash  //先把工作区存起来
+		
+		2. git checkout master 
+		
+		3.修改bug并提交，结束.
+		
+		3. git checkout dev1  //切回dev1
+		
+		4. git stash list    //查看保存的工作区
+		
+        5. git stash apply stash@{0}  //恢复某个工作区,ok了继续干活
+		
+		6. git stash drop  stash@{0}  //删除已经没用的工作区保存
+		
+		
+场景12: 要查看删除的文件  
+		git ls-files -d
+
+场景13: 生成生成.gitignore文件
+
+----------错误--------------
+场景12: 
+	如果这里错误了会如下错误：
+
+	error: src refspec –tags does not match any.
+
+	error: failed to push some refs to'https://github.com/huzhiguang/hiphop_extensi
+
+	on.git'
+
+
+	git push origin --tags
+场景13: tortoisegit pull报错  bad  file number  Your configuration specifies to merge with the ref 'master'
+		from the remote, but no such ref was fetched.
+		
+		
+	右键tortoisegit->setting->git->点击编辑本地git配置  :remote = origin 替换成这一行 remote = origin master
+
+
+场景14 :拉取分支  
+       
+           git pull origin 分支名
+
+场景15  ：查看所有分支
+
+            git branch -a
+	  
+场景16 	:参看远程主机的网址  
+
+	  git remote -av
+场景17 	:本地分支推到远程
+          git push origin 分支名
+场景18  :删除远程分支
+
+         git push origin :分支名  （origin后有空格）
+		 
+		 
+场景19  :拉取所有分支下来(把别人建的分支拿下来,并且切换到那个分支, 如果你当前就是那个分支就会产生合并的效果)
+
+       git pull origin 分支名
+
+场景20 ：放弃本地修改
+
+	git reset --hard  （可以放弃修改 但是add的放弃不了）
+
+
+场景21 ：保持仓库整洁
+
+	git fetch origin master
+	git rebase origin/master
+	git push
+
+场景22 :git pull —-rebase
+两个人同时开发一个版本
+
+a1 a2 a3 
+
+b1 b2 b3 
+
+为了能保障commit 顺序 a1 a2 a3  b1 b2 b3 
+
+b使用 git pull —-rebase  ,合并冲突的此时是b提交的次数  就是3次
+
+
+—————————————————————
+
+git rebase 和git merge差不多  稍有不同
+
+
+git reset --hard origin/master  --放弃本地修改 
+
+版本号传6位 
+
+git clean
+git checkout  某版本
+
+ 
+git diff 版本号1  && 版本号2 
+
+git diff v1.6.1.1 v1.6.1.2 -- sha1_file.c    比对文件
+
+git log  文件                              查看文件版本
+
+场景23 设置本地分支和远程分支的关联
+
+在当前分支git branch --set-upstream-to=origin/dev
+
+场景24  查看现有git配置
+
+git config -l 
+
+
+场景25  删除远程的源 ，查看远程源，添加及修改
+git add remote myorigin  git@gitlab:zzwar2009/test.git
+
+git remote rm origin1
+
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git  
+
+git remote -v
+
+
+

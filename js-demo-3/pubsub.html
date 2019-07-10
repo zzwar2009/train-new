@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body >
+  </body>
+</html>
+<script type ='text/javascript'>
+function pubsub(){
+  this.listeners = [];
+
+  var publish = function(){
+    this.listeners.forEach(function(listener){
+        listener.apply(this,arguments)
+      })
+  }.bind(this);
+  var subscribe = function(fn){
+    this.listeners.push(fn);
+  }.bind(this);
+  return {
+    publish:publish,  
+    subscribe:subscribe
+  }
+}
+var pubsub = new pubsub();
+
+function f1(){
+  //do sth 
+  setTimeout(function(){
+    pubsub.publish();
+  },4000)
+}
+
+function f2(){
+  console.log('this is f2');
+}
+pubsub.subscribe(f2)
+
+f1();
+
+</script>

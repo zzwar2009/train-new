@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body >
+  </body>
+</html>
+<script type ='text/javascript'>
+function pubsub(){
+  this.listeners = {};
+
+  var publish = function(key){
+   
+    var args = Array.prototype.slice.call(arguments);
+    args.shift();
+    this.listeners[key].forEach(function(listener){
+        listener.apply(this,args)
+      })
+  }.bind(this);
+
+  var subscribe = function(key,fn){
+    this.listeners[key] = this.listeners[key] ? this.listeners[key] : [];
+    this.listeners[key].push(fn);
+  }.bind(this);
+
+  return {
+    publish:publish,  
+    subscribe:subscribe
+  }
+}
+var pubsub = new pubsub();
+
+function f1(){
+  //do sth 
+  setTimeout(function(){
+    pubsub.publish('name','HanMeimei','lilei');
+  },4000)
+}
+
+function f2(name,name1){
+  console.log('get name：'+name+'+++'+name1);
+}
+pubsub.subscribe('name',f2)
+
+f1();
+
+</script>

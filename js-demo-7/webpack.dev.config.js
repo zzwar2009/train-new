@@ -10,7 +10,7 @@ module.exports={
     output: {
         path: path.resolve(__dirname,'dist'),
         filename:'bundle.[hash].js',
-        // publicPath:'/'
+        publicPath:'/'
     },
     devtool:'eval-source-map',
     module: {
@@ -79,8 +79,10 @@ module.exports={
     ],
     devServer:{
         contentBase:path.resolve(__dirname,'dist'),
+        publicPath:'/',
         host:'localhost',
         compress:true,
+        historyApiFallback:true,
         port:8080,
         proxy: {
             '/app': {

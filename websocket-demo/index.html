@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://mapv.baidu.com/build/mapv.min.js"></script>
+  </head>
+  <body >
+    <script type='text/javascript'>
+      
+      let ws = new WebSocket('ws://localhost:8888');
+        ws.onopen = function () {
+            console.log('客户端连接成功');
+            ws.send('hello');
+        }
+        ws.onmessage = function (event) {
+            console.log('收到服务器的响应 ' + event.data);
+        }
+    </script>
+    
+  </body>
+</html>

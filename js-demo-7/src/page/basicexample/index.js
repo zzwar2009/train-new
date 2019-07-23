@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link ,withRouter} from "react-router-dom";
 
 
 /* 
@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 3. Link
 4. exact 精确匹配
 */
-function BasicExample() {
+function BasicExample(props) {
+    
   return (
     <Router>
       <div>
@@ -86,4 +87,4 @@ console.log(match)
   );
 }
 
-export default BasicExample;
+export default (BasicExample);

@@ -63,7 +63,6 @@ function logger({ getState ,dispatch}) {
 	  console.log('will dispatch1===', action)     
   
 	  // 调用 middleware 链中下一个 middleware 的 dispatch。
-	  console.log('logger1===',next)
 	  let returnValue = next(action)
 	  console.log('logger1===',returnValue)
   

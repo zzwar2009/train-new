@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link ,withRouter} from "react-router-dom";
 
 
+
+
+
 /* 
 1. 获取参数
 2. render
@@ -78,7 +81,9 @@ function Topics({ match }) {
   );
 }
 
-function Topic({ match }) {
+function Topic(props) {
+  const {match} = props;
+  console.log(props)
 console.log(match)
   return (
     <div>

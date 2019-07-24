@@ -38,9 +38,8 @@ export default function compose(...funcs){
         // (a,b)=>(...args)=>a(b(...args))
 
         function(a,b){
-            debugger
-            return function(...args){
-                debugger
+            debugger//装载next ,next是下一个middleware的 aciton => {} 部分，最后总结果还是一个fn :包装过的dispatch(action函数(action 为业务传进来的redux action)
+            return function(...args){//返回函数不是立即运行
                 var res = b(...args);
                 var res1 = a(res);
                 return res1

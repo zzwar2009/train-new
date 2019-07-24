@@ -13,6 +13,7 @@ let WebSocketServer = require('ws').Server;
 let wsServer = new WebSocketServer({ port: 8888 });
 wsServer.on('connection', function (socket) {
     console.log('连接成功');
+    console.log(socket)
     socket.on('message', function (message) {
         console.log('接收到客户端消息:' + message);
         socket.send('服务器回应:' + message);

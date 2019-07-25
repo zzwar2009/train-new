@@ -28,7 +28,7 @@ import PropTypes from 'prop-types'
 
 ReactDOM.render(
     <Provider store={configureStore()}>
-        <BasicExample/>
+        <SideBar/>
     </Provider>,
     document.getElementById('root')
 );

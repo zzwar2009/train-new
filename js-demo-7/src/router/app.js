@@ -6,9 +6,7 @@ import configureStore from '../store/configureStore.js';
 import { BrowserRouter,Switch,Route,HashRouter,Link } from 'react-router-dom'
 import Frame from '../page/frame/index.js';
 import "../styles/app.scss";
-import Counter from '../page/counter/index17';
-import Weather from '../page/weather';
-
+// import Counter from '../page/counter/index17';
 import BasicExample from '../page/basicexample';
 import ParamsExample from '../page/ParamsExample';
 import AuthExample from '../page/AuthExample';
@@ -22,13 +20,15 @@ import RouteConfig from '../page/RouteConfig';
 import ModalGallery from '../page/ModalGallery';
 
 import QueryParams from '../page/QueryParams';
+
+import TabLayout from '../page/TabLayout';
 import PropTypes from 'prop-types'
 
 
 
 ReactDOM.render(
     <Provider store={configureStore()}>
-        <SideBar/>
+        <TabLayout/>
     </Provider>,
     document.getElementById('root')
 );

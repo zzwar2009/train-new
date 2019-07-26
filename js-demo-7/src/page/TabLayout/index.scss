@@ -1,0 +1,15 @@
+.main-wrap{
+    display:flex;
+    height:100%;
+    .l-wrap{
+        width:200px;
+        height:100%;
+        border-right:1px solid #eee;
+
+    }
+    .r-wrap{
+        padding:20px;
+        flex:1;
+        height:100%;
+    }
+}

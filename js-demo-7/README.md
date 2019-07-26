@@ -35,3 +35,8 @@ react-router-native: 基于react-router，类似react-router-dom，加入了reac
 
 ### 文档
   - https://reacttraining.com/react-router/web/example/url-params
+
+
+
+### bug  
+1. 这个脚手架里引入antd样式报错

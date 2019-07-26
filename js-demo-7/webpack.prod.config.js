@@ -46,11 +46,12 @@ module.exports={
             {
                 test: /\.css/,
                 include: path.resolve(__dirname,'src'),
-                exclude: /node_modules/,
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
                 },'css-loader','postcss-loader']
             },
+
+            
             {
                 test: /\.scss/,
                 include: path.resolve(__dirname,'src'),

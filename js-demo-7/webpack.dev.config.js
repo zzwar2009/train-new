@@ -28,25 +28,42 @@ module.exports={
                 use: {
                     loader: 'babel-loader',
                 },
-                include: path.join(__dirname,'src'),
+                // include: path.join(__dirname,'src'),
                 exclude:/node_modules/
             },
             {
                 test: /\.css/,
-                include: path.resolve(__dirname,'src'),
-                exclude: /node_modules/,
+                // include: path.resolve(__dirname,'src'),
+                // exclude: /node_modules/,
+                // include: path.join(__dirname, '/node_modules/antd'),
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
                 },'css-loader','postcss-loader']
             },
+            // {
+            //     test: /\.css$/,
+            //     use: ['style-loader','css-loader','postcss-loader'],
+            //     exclude: /^node_modules$/
+            // },
+            // {
+            //     test: /\.css/,
+            //     include: path.resolve(__dirname,'src'),
+            //     exclude: /node_modules/,
+            //     include: path.join(__dirname, '/node_modules/antd'),
+            //     use: ['style-loader','css-loader','postcss-loader']
+            // },
             {
                 test: /\.scss/,
-                include: path.resolve(__dirname,'src'),
+                // include: path.resolve(__dirname,'src'),
                 exclude: /node_modules/,
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
                 },'css-loader','postcss-loader','sass-loader']
             },
+            {
+                test: /\.less$/,
+                loader: ['style-loader','css-loader','less-loader']
+            }, 
             {
                 test:/\.(jpg|png|bmp|gif)/,
                     use:[

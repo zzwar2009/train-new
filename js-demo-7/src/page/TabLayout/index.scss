@@ -5,6 +5,22 @@
         width:200px;
         height:100%;
         border-right:1px solid #eee;
+        ul{
+            cursor: pointer;
+            width:200px;
+        }
+        ul li{
+            height:30px;
+            line-height:30px;
+            width:100%;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+        li.active{
+            color:#fff;
+            background:blue;
+        }
 
     }
     .r-wrap{

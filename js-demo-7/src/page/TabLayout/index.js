@@ -4,28 +4,38 @@ import React, { Component } from 'react';
 
 import { Tabs } from 'antd';
 import 'antd/lib/tabs/style/index.css';
+
+
 // import 'antd/dist/antd.css';
 const { TabPane } = Tabs;
-// import './tab.css';
-import './index.css';
+import './index.scss';
+
+// import './test.css';
 
 class SidebarExample extends React.Component {
   constructor(props) {
     super(props);
     this.newTabIndex = 0;
     const panes = [
-      { title: 'Tab 1', content: 'Content of Tab 1', key: '1' },
-      { title: 'Tab 2', content: 'Content of Tab 2', key: '2' },
-      {
-        title: 'Tab 3',
-        content: <div><p>fsdf</p></div>,
-        key: '3',
-        closable: false,
-      },
+      { title: 'default', content: 'Content of default', key: 'default',closable: false },
     ];
+    const navConfig = [
+        { title: 'Tab 1', content: 'Content of Tab 1', key: '1' },
+        { title: 'Tab 2', content: 'Content of Tab 2', key: '2' },
+        {
+            title: 'Tab 3',
+            content: <div><p>fsdf</p></div>,
+            key: '3',
+        },
+    ];
+   
+
+
+       
     this.state = {
       activeKey: panes[0].key,
       panes,
+      navConfig
     };
   }
 
@@ -63,20 +73,34 @@ class SidebarExample extends React.Component {
     this.setState({ panes, activeKey });
   };
 
-  addTab= () => {
-    this.add();
+  addTab= (item) => {
+    const {key,content,title} = item;
+
+    const { panes } = this.state;
+    const activeKey = key;
+    let finded = panes.some(function(item){
+        return item.key == key;
+    })
+    if(!finded){//已经打开tab就高亮 没打开要打开
+        panes.push(item);
+    }
+    this.setState({ panes, activeKey });
   }
 
   render() {
+    const {navConfig,activeKey} = this.state;
+    let that = this;
+    
+    let navs = navConfig.map(function(item,i){
+        let cls = activeKey == item.key ? 'active':'';
+        return <li className={cls} onClick={function(){
+            return that.addTab(item)
+        }}>{item.title}</li>
+    })
     return (<div className='main-wrap'>
        <div className='l-wrap'>
         <ul>
-          <li>navigate1</li>
-          <li>navigate2</li>
-          <li>navigate3</li>
-          <li>navigate4</li>
-          <li>navigate5</li>
-          <li>navigate6</li>
+          {navs}
         </ul>   
        </div>
        <div className='r-wrap'>
@@ -94,7 +118,6 @@ class SidebarExample extends React.Component {
             ))}
           </Tabs>
           <div className='sepline'></div>
-          <button onClick = {this.addTab}>add tab</button>
           </div>
        </div>  
       </div>

@@ -18,16 +18,8 @@ let routes = [
     main: () => <h2>Shoelaces</h2>
   }
 ];
-for(let i = 0;i<300;i++){
-  let obj = {
-    path: "/index"+i,
-    sidebar: (index) => <div>index{index}</div>,
-    main: () => <h2>main{i}</h2>
-  }
-  routes.push(obj);
-}
 
-console.log(routes)
+
 function SidebarExample() {
   let lis = routes.map((route, index) => {
     // Render more <Route>s with the same paths as

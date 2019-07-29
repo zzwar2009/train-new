@@ -5,6 +5,7 @@ import  {Provider} from 'react-redux';
 import configureStore from '../store/configureStore.js';
 import { BrowserRouter,Switch,Route,HashRouter,Link } from 'react-router-dom'
 import Frame from '../page/frame/index.js';
+import "../styles/reset.scss";
 import "../styles/app.scss";
 // import Counter from '../page/counter/index17';
 import BasicExample from '../page/basicexample';
